@@ -7,6 +7,9 @@ import plotly
 import plotly.express as px
 import json
 import nltk
+'''
+    L'analisi del sentiment con VADER è particolarmente efficace per lavorare con testi brevi, come tweet, recensioni, commenti, che possono contenere linguaggio non formale, emoticon, abbreviazioni, ecc
+'''
 nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
@@ -73,8 +76,8 @@ def sentiment():
     graphJSON_hourly = json.dumps(fig_hourly, cls=plotly.utils.PlotlyJSONEncoder)
     graphJSON_daily = json.dumps(fig_daily, cls=plotly.utils.PlotlyJSONEncoder)
     
-    header= f"Hourly and Daily Sentiment of {ticker} Stock"
-    description = "The charts show the average sentiment scores..."
+    header= f"Sentimento orario e giornaliero di {ticker} Stock"
+    description = "I grafici mostrano i punteggi medi del sentiment..."
     return render_template('sentiment.html', graphJSON_hourly=graphJSON_hourly, graphJSON_daily=graphJSON_daily, header=header, table=parsed_and_scored_news.to_html(classes='data'), description=description)
 
 if __name__ == '__main__':
